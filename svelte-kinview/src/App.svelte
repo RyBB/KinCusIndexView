@@ -1,17 +1,18 @@
 <script>
+  // data
 	let recordsData = [];
 	let sortflag = {
 		data: '',
 		desc: false
 	};
 
+  // methods
 	const getRecords = async () => {
 		const app = kintone.app.getId();
 		const query = 'order by $id desc limit 500';
 		const data = await kintone.api(kintone.api.url('/k/v1/records'), 'GET', {app, query});
 		recordsData = data.records;
 	};
-
 	const sortData = DATA => {
 		if (sortflag.data !== DATA) {
 			// まだソートしてないフィールドが選ばれたら、降順にする
